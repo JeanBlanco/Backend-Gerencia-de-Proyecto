@@ -1,0 +1,15 @@
+# Ignorar la carpeta node_modules
+node_modules/
+
+# Ignorar archivos de dependencias
+package-lock.json
+
+# Ignorar configuración del entorno
+.env
+
+# Ignorar archivos de logs
+logs/
+*.log
+
+# Ignorar caché de npm
+npm-debug.log*

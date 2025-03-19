@@ -15,5 +15,5 @@ routesApi(app);
 
 app.listen(EnvConfig.port, () => {
         console.log(`Server Running on port ${EnvConfig.port}
-    http://localhost:${EnvConfig.port}`);
+    http://localhost:${EnvConfig.port}`)
 })

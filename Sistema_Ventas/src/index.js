@@ -4,10 +4,12 @@ import cors from "cors";
 import routesApi from "./routes/index.js";
 import { getConnection } from "./config/db.js";
 import { EnvConfig } from "./config/dotenv.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(cors());
+app.use(cookieParser())
 app.use(express.json());
 
 getConnection();

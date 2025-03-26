@@ -14,28 +14,22 @@ const validarJWT = async (req = request, res = response, next) => {
     }
     
     try {
+
+        const { id } = jwt.verify(token, EnvConfig.secretKey);
+
         const pool = await getConnection();
         const result = await pool
             .request()
             .input('email', sql.VarChar, email)
-            .query("SELECT username, email, password FROM dbo.Admin WHERE email = @email")
-
-        const { id } = jwt.verify(token, EnvConfig.secretKey);
+            .query("SELECT username, email FROM dbo.Admin WHERE id = @id")
        
         //read user corresponding to uid
-        const user = await User.findById( uid );
+        const user = result.recordset[0];
 
         //validate exist user
         if( !user ){
             return res.status(401).json({
                 msg: 'Token not valid - user removed from DB'
-            })
-        }
-
-        //verify state of user
-        if(!user.state){
-            return res.status(401).json({
-                msg: 'Token not valid - user with state: false'
             })
         }
 
